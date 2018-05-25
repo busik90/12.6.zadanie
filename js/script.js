@@ -2,7 +2,7 @@ var url = 'https://restcountries.eu/rest/v2/name/',
     countriesList = $('#countries-box');
 
 // events
-$('#search').click(searchCountries);
+$('#search-btn').click(searchCountries);
 
 // class
 function CountryCard(name, flagUrl, countryData) {
@@ -16,30 +16,38 @@ function CountryCard(name, flagUrl, countryData) {
   // create components of country card
   function createCountryCard() {
     var $card = $('<li>').addClass('country-card'),
-        $flag = $('<img>').addClass('country-flag').attr('src', self.flagUrl),
-        $header = $('<h2>').addClass('country-name').text(self.name),
+
+        $header = $('<header>').addClass('country-header'),
+        $imgFlag = $('<img>').addClass('country-flag').attr('src', self.flagUrl),
+        $h2 = $('<h2>').addClass('country-name').text(self.name),
+
         $table = $('<table>').addClass('country-info'),
         $tableHeader = $('<thead>'),
         $tableRow = $('<tr>'),
-        $tableHeading = $('<th>').text('Information:'),
+        $tableHeading = $('<th>').text('More Information :').attr('colspan', "2"),
         $tableBody = $('<tbody>'),
         $tableData = $('<td>'),
         $tableFooter = $('<tfoot>');
 
     // construct country card
+    $header.append($imgFlag)
+           .append($h2);
+
     $tableHeading.appendTo($tableRow);
     $tableRow.appendTo($tableHeader);
 
     $tableRow = $('<tr>');
                  
     $tableBody = setCountryData();
+    
+    $tableData.attr('colspan', "2").text('.').appendTo($tableRow);
+    $tableRow.appendTo($tableFooter);
 
     $table.append($tableHeader)
           .append($tableBody)
           .append($tableFooter);
 
-    $card.append($flag)
-         .append($header)
+    $card.append($header)
          .append($table);
 
     return $card;
