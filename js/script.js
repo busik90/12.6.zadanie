@@ -91,10 +91,10 @@ function makeCountriesList(resp) {
   countriesList.empty();
   resp.forEach(function(item) {
 
-    var countryData = [ ['Native name', item.nativeName],
-                        ['Languages name', readObject(item.languages, 'name')],
-                        ['Region', item.region],
+    var countryData = [ ['Region', item.region],
                         ['Capital', item.capital],
+                        ['Native name', item.nativeName],
+                        ['Languages', readObject(item.languages, 'name')],
                         ['Timezone', readObject(item.timezones)],
                         ['Currencies', readObject(item.currencies, 'code')] ];
 
@@ -107,7 +107,7 @@ function makeCountriesList(resp) {
     if(param != undefined) {
       var valuesArray = [];
       
-      object.forEach(function(item) {        
+      object.forEach(function(item) {
         valuesArray.push(item[param]);
         console.log(item[param]);
       });
