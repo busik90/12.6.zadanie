@@ -109,7 +109,13 @@ h1 {
 	justify-content: space-between;
 }
 
+.search-box .buttons-box {
+	width: 100%;
+	display: flex;
+}
+
 .search-box #country-name,
+.search-box #show-all-btn,
 .search-box #search-btn {
 	width: 100%;
 	padding: .2em .4em;
@@ -122,10 +128,18 @@ h1 {
 	text-align: center;
 }
 
+.search-box #show-all-btn,
 .search-box #search-btn {
-	color: white;
-	background-color: #aaa;
+	color: white;	
 	cursor: pointer;
+}
+
+.search-box #show-all-btn {
+	background-color: #accbe1;
+}
+
+.search-box #search-btn {
+	background-color: #aaa;	
 }
 
 #countries-box li {
