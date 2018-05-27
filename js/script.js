@@ -3,6 +3,7 @@ var url = 'https://restcountries.eu/rest/v2/name/',
 
 // events
 $('#search-btn').click(searchCountries);
+$('#country-name').keypress(function(e) { if ((e.keyCode || e.which) == 13) searchCountries(); });
 
 // class
 function CountryCard(name, flagUrl, countryData) {
@@ -113,7 +114,6 @@ function makeCountriesList(resp) {
       
       object.forEach(function(item) {
         valuesArray.push(item[param]);
-        console.log(item[param]);
       });
       object = valuesArray;
     }
