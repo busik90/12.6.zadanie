@@ -95,7 +95,8 @@ function makeCountriesList(resp) {
                         ['Languages name', readObject(item.languages, 'name')],
                         ['Region', item.region],
                         ['Capital', item.capital],
-                        ['Timezone', readObject(item.timezones)] ];
+                        ['Timezone', readObject(item.timezones)],
+                        ['Currencies', readObject(item.currencies, 'code')] ];
 
     var countryCard = new CountryCard(item.name, item.flag, countryData);
 
