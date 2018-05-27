@@ -196,11 +196,13 @@ th, td {
 }
 
 .country-info tbody td:nth-child(1) {
+	width: 25%;
 	color: #371d06;
 	background-color: #fecc00;
 }
 
 .country-info tbody td:nth-child(2) {
+	width: 75%;	
 	color: #010081;
 	background-color: #fefe99;
 }
