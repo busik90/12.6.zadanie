@@ -104,12 +104,17 @@ function makeCountriesList(resp) {
                         ['Languages name', language],
                         ['Region', item.region],
                         ['Capital', item.capital],
-                        ['Timezone', item.timezones] ];
+                        ['Timezone', readObject(item.timezones)] ];
 
     var countryCard = new CountryCard(item.name, item.flag, countryData);
 
     $(countriesList).append(countryCard.$element);
-    // console.log(Object.getOwnPropertyNames(item.languages));
+    
     console.log(countryData);
   });
+
+  function readObject(object) {
+
+    return result = object.join(', ');
+  }
 }
