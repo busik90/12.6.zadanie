@@ -90,18 +90,9 @@ function searchCountries() {
 function makeCountriesList(resp) {
   countriesList.empty();
   resp.forEach(function(item) {
-    var language;
-    
-    item.languages.forEach(function(item) {
-      if (language != undefined) {
-        language = language + ", " + item.name;
-      } else {
-        language = item.name;        
-      }
-    });
 
     var countryData = [ ['Native name', item.nativeName],
-                        ['Languages name', language],
+                        ['Languages name', readObject(item.languages, 'name')],
                         ['Region', item.region],
                         ['Capital', item.capital],
                         ['Timezone', readObject(item.timezones)] ];
@@ -109,11 +100,18 @@ function makeCountriesList(resp) {
     var countryCard = new CountryCard(item.name, item.flag, countryData);
 
     $(countriesList).append(countryCard.$element);
-    
-    console.log(countryData);
   });
 
-  function readObject(object) {
+  function readObject(object, param) {
+    if(param != undefined) {
+      var valuesArray = [];
+      
+      object.forEach(function(item) {        
+        valuesArray.push(item[param]);
+        console.log(item[param]);
+      });
+      object = valuesArray;
+    }
 
     return result = object.join(', ');
   }
