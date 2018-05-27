@@ -94,9 +94,13 @@ function makeCountriesList(resp) {
     var countryData = [ ['Region', item.region],
                         ['Capital', item.capital],
                         ['Native name', item.nativeName],
-                        ['Languages', readObject(item.languages, 'name')],
+                        ['Language(s)', readObject(item.languages, 'name')],
                         ['Timezone', readObject(item.timezones)],
                         ['Currencies', readObject(item.currencies, 'code')] ];
+
+    countryData.forEach(function(item) {
+      item[1] = ': ' + item[1];
+    });
 
     var countryCard = new CountryCard(item.name, item.flag, countryData);
 
