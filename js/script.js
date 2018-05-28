@@ -5,6 +5,8 @@ $('#show-all-btn').click(function() { searchCountries('all'); });
 $('#search-btn').click(function() { searchCountries('name'); });
 $('#country-name').keypress(function(e) { if ((e.keyCode || e.which) == 13) searchCountries('name'); });
 
+clearInput();
+
 // class
 function CountryCard(name, flagUrl, countryData) {
   var self = this;
@@ -75,7 +77,6 @@ function CountryCard(name, flagUrl, countryData) {
   }
 }
 
-
 function searchCountries(param) {
   var url = 'https://restcountries.eu/rest/v2/';
   
@@ -94,8 +95,14 @@ function searchCountries(param) {
   $.ajax({
     url: url,
     method: 'GET',
-    success: makeCountriesList
+    success: makeCountriesList,
+    statusCode: {
+      404: function() {
+        alert('Country "' + countryName + '", doesn\'t exist');
+      }
+    }
   });
+  clearInput();
 }
 
 function makeCountriesList(resp) {
@@ -130,4 +137,8 @@ function makeCountriesList(resp) {
 
     return result = object.join(', ');
   }
+}
+
+function clearInput() {
+  $('#country-name').val('');
 }
