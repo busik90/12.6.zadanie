@@ -1,9 +1,10 @@
-var countriesList = $('#countries-box');
+var countriesList = $('#countries-box')
+    countryName = $('#country-name');
 
 // events
-$('#show-all-btn').click(function() { searchCountries('all'); });
-$('#search-btn').click(function() { searchCountries('name'); });
-$('#country-name').keypress(function(e) { if ((e.keyCode || e.which) == 13) searchCountries('name'); });
+$('#show-all-btn').click(function() { searchCountries('show all'); });
+$('#search-btn').click(function() { searchCountries(countryName.val()); });
+$('#country-name').keypress(function(e) { if ((e.keyCode || e.which) == 13) searchCountries(countryName.val()); });
 
 clearInput();
 
@@ -77,17 +78,14 @@ function CountryCard(name, flagUrl, countryData) {
   }
 }
 
-function searchCountries(param) {
+function searchCountries(countryName) {
   var url = 'https://restcountries.eu/rest/v2/';
   
-  if (param == 'name') {
-    var countryName = $('#country-name').val();
-
-    if(!countryName.length) countryName = 'Poland';
-
-    url += param + '/' + countryName;
+  if (countryName == 'show all') {
+    url += 'all/';
   } else {
-    url += param;
+    if(!countryName.length) countryName = 'Poland';
+    url += 'name/' + countryName;
   }
   
   console.log(url);
